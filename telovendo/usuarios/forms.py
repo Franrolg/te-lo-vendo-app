@@ -7,6 +7,12 @@ class FormularioUsuario(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['email']
+    
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if Usuario.objects.filter(email=email).exists():
+            raise forms.ValidationError("Ya existe un usuario con ese email")
+        return email
 
 class FormularioDireccion(forms.ModelForm):
     class Meta:

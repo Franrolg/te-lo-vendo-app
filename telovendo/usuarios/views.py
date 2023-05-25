@@ -3,9 +3,10 @@ from django.shortcuts import redirect, render
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 
 from .forms import FormularioRegistroCliente
-from .models import Usuario
+from .models import Usuario, Cliente
 
 
 def autenticar_usuario(request, usuario, contrasena):
@@ -28,9 +29,11 @@ def registrar_cliente(request):
     if request.method == 'POST':
         form = FormularioRegistroCliente(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.save()
+            datos = form.cleaned_data
+            usuario = Usuario.objects.create(email=datos.pop("email"), password=make_password("probando"))
+            Cliente.objects.create(**{"usuario": usuario, **datos})
             return redirect('index')
-        
-    form = FormularioRegistroCliente()
-    return render(request, 'registro_usuario.html', {'form':form})
+        return render(request, 'registro_usuario.html', {'form': form})
+    else:
+        form = FormularioRegistroCliente()
+        return render(request, 'registro_usuario.html', {'form':form})
