@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="col-md-6 offset-md-3">
+    <h1 class='text-center mt-2 mb-5'> REGISTRO DE USUARIOS </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+            {% for campo in form %}
+                {% if campo.errors %}
+                    {{ campo.errors }}
+                {% endif %}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {{ form.as_p }}
+        <div class="d-grid col-md-6 mx-auto">
+            <button type="submit" class="btn btn-secondary mt-4">Confirmar Registro</button>
+        </div>
+    </form>
+</div>
+{% endblock contenido %}

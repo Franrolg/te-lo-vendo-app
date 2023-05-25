@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="col-md-6 offset-md-3 mt-2">
+    {% if messages %}
+    {% for mensaje in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ mensaje }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+    {% if user.is_authenticated %}
+        <h1 class='text-center mt-2 mb-5'> BIENVENIDO {{ user.first_name|upper}} </h1>
+    {% else %}
+        <h1 class='text-center mt-2 mb-5'> INICIAR SESIÓN </h1>
+        <br>
+        <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Correo Electrónico" name="email" required>
+            </div>
+            <div class="mb-4">
+                <input type="password" class="form-control" placeholder="Contraseña" name="contrasena" required>
+            </div>
+        <div class="d-grid col-md-6 mx-auto">
+            <button type="submit" class="btn btn-secondary mt-4">Ingresar</button>
+        </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock contenido %}

@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <link rel="shortcut icon" href="{% static 'imgs/favicon.ico' %}" type="image/x-icon">
+
+        <title> Aprendiendo Django </title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid align-items-center">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav col-12 text-center">
+                    <li class="nav-item col-2">
+                    <a class="nav-link nav" href="{% url 'index' %}"> INICIO </a>
+                    </li>
+                    {% if not user.is_authenticated or user.is_superuser%}
+                    <li class="nav-item col-2">
+                        <a class="nav-link nav" href="{% url 'registro' %}"> REGISTRO </a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item col-2">
+                        <a class="nav-link nav" href="{% url 'cerrar sesion' %}"> CERRAR SESIÓN </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+        {% block contenido %}
+        {% endblock contenido %}
+
+        <div class="container">
+            <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link footer px-2 text-body-secondary">Nosotros</a></li>
+              </ul>
+              <p class="text-center text-body-secondary">© 2023 Company, Inc</p>
+            </footer>
+        </div>
+    </body>
+</html>

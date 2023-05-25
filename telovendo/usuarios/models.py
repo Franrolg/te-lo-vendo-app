@@ -59,7 +59,7 @@ class Trabajador(Persona):
 
 class Cliente(Persona):
     forma_pago = models.ForeignKey("gestion.FormaPago", on_delete=models.SET_NULL, null=True)
-    direccion = models.ForeignKey("Direccion", on_delete=models.CASCADE, related_name="cliente")
+    direccion = models.ForeignKey("Direccion", on_delete=models.CASCADE, related_name="cliente", null=True)
 
 class Direccion(models.Model):
     calle = models.CharField(max_length=120)
