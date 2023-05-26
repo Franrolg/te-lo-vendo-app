@@ -10,6 +10,8 @@ from django.contrib.auth.hashers import make_password
 from .forms import FormularioRegistroCliente
 from .models import Usuario, Cliente
 
+from django.core.mail import send_mail
+
 def generar_contrasena():
     return ''.join(random.choice(string.ascii_letters + string.digits) for i in range(6))
 
@@ -34,10 +36,11 @@ def registrar_cliente(request):
         form = FormularioRegistroCliente(request.POST)
         if form.is_valid():
             datos = form.cleaned_data
+            email = datos.pop("email")
             contrasena = generar_contrasena()
-            usuario = Usuario.objects.create(email=datos.pop("email"), password=make_password(contrasena))
+            usuario = Usuario.objects.create(email=email, password=make_password(contrasena))
             Cliente.objects.create(**{"usuario": usuario, **datos})
-            print("contraseña:", contrasena)
+            send_mail("Registro en TeLoVendo", f"Estimado {datos['nombre']}:\n\n\n Contraseña para verificar e iniciar sesión es: {contrasena}", "telovendopython@gmail.com", [email])  
             return redirect('index')
         return render(request, 'registro_usuario.html', {'form': form})
     else:
