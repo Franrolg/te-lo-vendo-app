@@ -9,7 +9,7 @@ from .models import Usuario, Cliente
 class UserAdmin(DjangoUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'email_verificado',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )

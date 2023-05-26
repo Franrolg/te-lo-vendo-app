@@ -16,9 +16,12 @@ def generar_contrasena():
     return ''.join(random.choice(string.ascii_letters + string.digits) for i in range(6))
 
 def autenticar_usuario(request, usuario, contrasena):
-    user = authenticate(request, username=usuario, password=contrasena)
-    if user: login(request, user)
-    return True if user is not None else False
+    usuario = authenticate(request, username=usuario, password=contrasena)
+    if usuario: login(request, usuario)
+    if not usuario.email_verificado: 
+        usuario.email_verificado = True
+        usuario.save()
+    return True if usuario is not None else False
 
 def index(request):
     if request.method == 'POST':
