@@ -1,5 +1,7 @@
 from django import forms
 from .models import Usuario, Cliente, Direccion
+from rut_chile import rut_chile as rutcl
+import phonenumbers
 
 class FormularioUsuario(forms.ModelForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Correo Electrónico'}))
@@ -29,3 +31,25 @@ class FormularioRegistroCliente(FormularioUsuario):
     class Meta:
         model = Cliente
         fields = ['email', 'nombre', 'primer_apellido', 'segundo_apellido', 'rut', 'telefono']
+
+    def clean_rut(self):
+        rut = self.cleaned_data['rut'].lower()
+        try:
+            if not rutcl.is_valid_rut(rut):
+                raise forms.ValidationError("El RUT ingresado no es válido")
+        except:
+            raise forms.ValidationError("Formato de RUT debe ser el siguiente: 12345678-9 (Sin puntos)")
+        
+        if Cliente.objects.filter(rut=rut).exists():
+            raise forms.ValidationError("Ya existe un usuario con el RUT ingresado")
+        
+        return rut
+
+    def clean_telefono(self):
+        telefono = self.cleaned_data['telefono']
+        try:
+            if not phonenumbers.is_possible_number(phonenumbers.parse(telefono)):
+                raise forms.ValidationError("El formato del teléfono debe ser: +56912345678")
+        except:
+            raise forms.ValidationError("El formato del teléfono debe ser: +56912345678")
+        return telefono
