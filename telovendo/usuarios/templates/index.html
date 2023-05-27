@@ -11,7 +11,13 @@
     {% endfor %}
   {% endif %}
     {% if user.is_authenticated %}
-            <h1 class='text-center mt-2 mb-5'> BIENVENIDO {{ user.cliente_set.first.nombre|upper }} </h1>
+            <h1 class='text-center mt-2 mb-5'> BIENVENIDO 
+              {% if user.cliente_set.all %}
+              {{ user.cliente_set.first.nombre|upper }}
+              {% else %}
+              {{ user.trabajador_set.first.nombre|upper }}
+              {% endif %}
+             </h1>
     {% else %}
         <h1 class='text-center mt-2 mb-5'> INICIAR SESIÓN </h1>
         <br>

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Usuario, Cliente
+from .models import Usuario, Cliente, Trabajador
 
 
 @admin.register(Usuario)
@@ -24,5 +24,9 @@ class UserAdmin(DjangoUserAdmin):
     ordering = ('email',)
 
 @admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ['rut', 'nombre', 'primer_apellido']
+
+@admin.register(Trabajador)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ['rut', 'nombre', 'primer_apellido']

@@ -31,9 +31,14 @@
                     <li class="nav-item col-2">
                     <a class="nav-link nav" href="{% url 'index' %}"> INICIO </a>
                     </li>
-                    {% if not user.is_authenticated or user.is_superuser%}
+                    {% if not user.is_authenticated%}
                     <li class="nav-item col-2">
                         <a class="nav-link nav" href="{% url 'registro' %}"> REGISTRO </a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <li class="nav-item col-4">
+                        <a class="nav-link nav" href="{% url 'registro' %}"> REGISTRAR TRABAJADOR </a>
                     </li>
                     {% endif %}
                     {% if user.is_authenticated %}
