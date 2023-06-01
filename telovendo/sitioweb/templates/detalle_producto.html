@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+
+<div class="card">
+  <div class="card-header"><strong>
+      {{ producto.nombre }}
+      {{ producto.sku }}</strong>
+  </div>
+  <div class="card-body">
+
+    <img src="{{ producto.url_imagen }}" class="img-fluid rounded-top" alt="">
+
+
+    <p class="card-text">
+      <strong>Descripción: </strong>{{ producto.descripcion }}
+    </p>
+
+    <p class="card-text">
+      <strong>Categoría: </strong>{{ producto.tipo }}
+    </p>
+
+    <p class="card-text">
+      <strong>Precio: </strong>{{ producto.mostrar_precio }}
+    </p>
+    <p class="card-text">
+      <strong>Stock: </strong>{{ producto.stock }}
+    </p>
+
+  </div>
+</div>
+
+<br /><br />
+<a href="{% url 'sitioweb:editar_producto' producto.sku %}" class="btn btn-secondary">Editar</a>
+<a href="{% url 'sitioweb:productos' %}" class="btn btn-secondary">Atrás</a>
+
+{% endblock %}

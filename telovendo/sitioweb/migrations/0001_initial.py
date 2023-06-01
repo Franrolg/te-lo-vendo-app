@@ -19,40 +19,56 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Producto',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=100)),
                 ('descripcion', models.TextField()),
                 ('stock', models.IntegerField()),
                 ('precio', models.IntegerField()),
                 ('url_imagen', models.CharField()),
-                ('actualizado_por', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, related_name='productos_actualizados', to=settings.AUTH_USER_MODEL)),
-                ('creado_por', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='productos_creados', to=settings.AUTH_USER_MODEL)),
-                ('tipo', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='gestion.tipoproducto')),
+                ('actualizado_por', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT,
+                 related_name='productos_actualizados', to=settings.AUTH_USER_MODEL)),
+                ('creado_por', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
+                 related_name='productos_creados', to=settings.AUTH_USER_MODEL)),
+                ('tipo', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='gestion.tipoproducto')),
             ],
         ),
         migrations.CreateModel(
             name='Pedido',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('fecha_creacion', models.DateTimeField(auto_now_add=True)),
-                ('fecha_actualizacion', models.DateTimeField(auto_now=True, null=True)),
-                ('actualizado_por', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, related_name='pedidos_actualizados', to=settings.AUTH_USER_MODEL)),
-                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='pedidos', to='usuarios.cliente')),
-                ('creado_por', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='pedidos_creados', to=settings.AUTH_USER_MODEL)),
-                ('direccion', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='usuarios.direccion')),
-                ('estado', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='gestion.estadopedido')),
-                ('forma_pago', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='gestion.formapago')),
-                ('medio', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='gestion.mediopedido')),
+                ('fecha_actualizacion', models.DateTimeField(
+                    auto_now=True, null=True)),
+                ('actualizado_por', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT,
+                 related_name='pedidos_actualizados', to=settings.AUTH_USER_MODEL)),
+                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
+                 related_name='pedidos', to='usuarios.cliente')),
+                ('creado_por', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
+                 related_name='pedidos_creados', to=settings.AUTH_USER_MODEL)),
+                ('direccion', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='usuarios.direccion')),
+                ('estado', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='gestion.estadopedido')),
+                ('forma_pago', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='gestion.formapago')),
+                ('medio', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='gestion.mediopedido')),
             ],
         ),
         migrations.CreateModel(
             name='DetallePedido',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('cantidad', models.IntegerField()),
                 ('precio', models.IntegerField()),
-                ('pedido', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='sitioweb.pedido')),
-                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='sitioweb.producto')),
+                ('pedido', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='sitioweb.pedido')),
+                ('producto', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='sitioweb.producto')),
             ],
         ),
     ]

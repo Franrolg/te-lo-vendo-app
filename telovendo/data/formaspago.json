@@ -1,0 +1,58 @@
+[
+  {
+    "model": "gestion.formapago",
+    "pk": 1,
+    "fields": {
+      "nombre": "Efectivo",
+      "habilitado": false
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 2,
+    "fields": {
+      "nombre": "Tarjeta de débito",
+      "habilitado": true
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 3,
+    "fields": {
+      "nombre": "Transferencia bancaria",
+      "habilitado": true
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 4,
+    "fields": {
+      "nombre": "Tarjeta de crédito",
+      "habilitado": true
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 5,
+    "fields": {
+      "nombre": "Cheque",
+      "habilitado": false
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 6,
+    "fields": {
+      "nombre": "Pago móvil",
+      "habilitado": false
+    }
+  },
+  {
+    "model": "gestion.formapago",
+    "pk": 7,
+    "fields": {
+      "nombre": "Criptomonedas",
+      "habilitado": true
+    }
+  }
+]

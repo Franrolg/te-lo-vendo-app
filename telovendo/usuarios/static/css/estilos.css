@@ -1,15 +1,15 @@
-body{
+body {
     background-image: url('../imgs/fondo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.nav-link.nav{
+.nav-link.nav {
     font-weight: bolder;
-    color: white!important;
+    color: white !important;
 }
 
-.nav-link.footer{
+.nav-link.footer {
     color: black;
 }
 
@@ -20,5 +20,39 @@ h1 {
 }
 
 .border-bottom {
-    border-color: black!important;
+    border-color: black !important;
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+
+img {
+    width: 100%;
+    height: 90%;
+}
+
+span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.producto {
+    border: 1px solid black;
+}
+
+[class*="col-"] {
+    padding: 5px;
+}
+
+@media only screen and (max-width: 920px) {
+
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    img {
+        height: auto;
+    }
 }

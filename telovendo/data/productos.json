@@ -1,0 +1,282 @@
+[
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU001",
+    "fields": {
+      "nombre": "Tarjeta de video",
+      "descripcion": "Producto para mejorar el rendimiento gráfico de tu computadora",
+      "stock": 10,
+      "precio": 200000,
+      "url_imagen": "imgs/SKU001.png",
+      "tipo": 1,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU002",
+    "fields": {
+      "nombre": "Televisor Smart TV",
+      "descripcion": "Televisor inteligente con conectividad a internet y aplicaciones integradas",
+      "stock": 5,
+      "precio": 500000,
+      "url_imagen": "imgs/SKU002.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU003",
+    "fields": {
+      "nombre": "Refrigerador",
+      "descripcion": "Refrigerador de alta capacidad con tecnología de ahorro energético",
+      "stock": 3,
+      "precio": 700000,
+      "url_imagen": "imgs/SKU003.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU004",
+    "fields": {
+      "nombre": "Lavadora",
+      "descripcion": "Lavadora automática con múltiples programas de lavado",
+      "stock": 8,
+      "precio": 400000,
+      "url_imagen": "imgs/SKU004.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU005",
+    "fields": {
+      "nombre": "Cámara DSLR",
+      "descripcion": "Cámara réflex digital de alta calidad para fotografía profesional",
+      "stock": 12,
+      "precio": 900000,
+      "url_imagen": "imgs/SKU005.png",
+      "tipo": 2,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU006",
+    "fields": {
+      "nombre": "Horno eléctrico",
+      "descripcion": "Horno eléctrico de última generación con múltiples funciones de cocción",
+      "stock": 6,
+      "precio": 300000,
+      "url_imagen": "imgs/SKU006.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU007",
+    "fields": {
+      "nombre": "Computadora portátil",
+      "descripcion": "Computadora portátil de alto rendimiento para trabajo y entretenimiento",
+      "stock": 15,
+      "precio": 1200000,
+      "url_imagen": "imgs/SKU007.png",
+      "tipo": 1,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU008",
+    "fields": {
+      "nombre": "Aspiradora",
+      "descripcion": "Aspiradora con sistema de filtración avanzado y gran poder de succión",
+      "stock": 4,
+      "precio": 250000,
+      "url_imagen": "imgs/SKU008.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU009",
+    "fields": {
+      "nombre": "Cafetera",
+      "descripcion": "Cafetera automática para preparar deliciosos cafés con facilidad",
+      "stock": 9,
+      "precio": 150000,
+      "url_imagen": "imgs/SKU009.png",
+      "tipo": 4,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU010",
+    "fields": {
+      "nombre": "Bicicleta",
+      "descripcion": "Bicicleta de montaña de alta resistencia y rendimiento",
+      "stock": 7,
+      "precio": 600000,
+      "url_imagen": "imgs/SKU010.png",
+      "tipo": 5,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU011",
+    "fields": {
+      "nombre": "Impresora multifuncional",
+      "descripcion": "Impresora que combina impresión, escaneo y copiado en un solo dispositivo",
+      "stock": 8,
+      "precio": 180000,
+      "url_imagen": "imgs/SKU011.png",
+      "tipo": 1,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU012",
+    "fields": {
+      "nombre": "Altavoz inalámbrico",
+      "descripcion": "Altavoz portátil con conectividad Bluetooth para disfrutar de música en cualquier lugar",
+      "stock": 15,
+      "precio": 80000,
+      "url_imagen": "imgs/SKU012.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU013",
+    "fields": {
+      "nombre": "Microondas",
+      "descripcion": "Microondas con múltiples funciones de cocción rápida y fácil",
+      "stock": 10,
+      "precio": 150000,
+      "url_imagen": "imgs/SKU013.png",
+      "tipo": 4,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU014",
+    "fields": {
+      "nombre": "Tablet",
+      "descripcion": "Tablet con pantalla táctil y acceso a aplicaciones y contenido multimedia",
+      "stock": 6,
+      "precio": 300000,
+      "url_imagen": "imgs/SKU014.png",
+      "tipo": 1,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU015",
+    "fields": {
+      "nombre": "Secadora de ropa",
+      "descripcion": "Secadora de ropa eficiente y con múltiples programas de secado",
+      "stock": 4,
+      "precio": 350000,
+      "url_imagen": "imgs/SKU015.png",
+      "tipo": 4,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU016",
+    "fields": {
+      "nombre": "Máquina de cortar pelo",
+      "descripcion": "Máquina de cortar pelo profesional para uso doméstico",
+      "stock": 12,
+      "precio": 60000,
+      "url_imagen": "imgs/SKU016.png",
+      "tipo": 3,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU017",
+    "fields": {
+      "nombre": "Hervidor eléctrico",
+      "descripcion": "Hervidor de agua eléctrico de alta capacidad y rápida ebullición",
+      "stock": 9,
+      "precio": 50000,
+      "url_imagen": "imgs/SKU017.png",
+      "tipo": 4,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU018",
+    "fields": {
+      "nombre": "Pelota de fútbol",
+      "descripcion": "Pelota de fútbol del mundial Qatar 2022",
+      "stock": 5,
+      "precio": 30000,
+      "url_imagen": "imgs/SKU018.png",
+      "tipo": 5,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU019",
+    "fields": {
+      "nombre": "Reloj despertador",
+      "descripcion": "Reloj despertador con funciones adicionales como radio y proyector de hora",
+      "stock": 8,
+      "precio": 30000,
+      "url_imagen": "imgs/SKU019.png",
+      "tipo": 4,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  },
+  {
+    "model": "sitioweb.producto",
+    "pk": "SKU020",
+    "fields": {
+      "nombre": "Cámara deportiva",
+      "descripcion": "Cámara resistente al agua para capturar momentos emocionantes en actividades al aire libre",
+      "stock": 10,
+      "precio": 250000,
+      "url_imagen": "imgs/SKU020.png",
+      "tipo": 2,
+      "creado_por": 1,
+      "actualizado_por": 1
+    }
+  }
+]

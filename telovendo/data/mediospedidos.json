@@ -1,0 +1,42 @@
+[
+  {
+    "model": "gestion.mediopedido",
+    "pk": 1,
+    "fields": {
+      "nombre": "Web",
+      "descripcion": "Compras realizadas desde la página web"
+    }
+  },
+  {
+    "model": "gestion.mediopedido",
+    "pk": 2,
+    "fields": {
+      "nombre": "Whatsapp",
+      "descripcion": "Compras realizadas a través de Whatsapp"
+    }
+  },
+  {
+    "model": "gestion.mediopedido",
+    "pk": 3,
+    "fields": {
+      "nombre": "Correo",
+      "descripcion": "Compras realizadas por correo electrónico"
+    }
+  },
+  {
+    "model": "gestion.mediopedido",
+    "pk": 4,
+    "fields": {
+      "nombre": "Teléfono",
+      "descripcion": "Compras realizadas vía telefónica"
+    }
+  },
+  {
+    "model": "gestion.mediopedido",
+    "pk": 5,
+    "fields": {
+      "nombre": "Redes Sociales",
+      "descripcion": "Compras realizadas a través de redes sociales"
+    }
+  }
+]

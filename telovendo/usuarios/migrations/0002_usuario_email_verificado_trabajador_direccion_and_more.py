@@ -21,14 +21,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Trabajador',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('rut', models.CharField(max_length=10, unique=True)),
                 ('nombre', models.CharField(max_length=50)),
                 ('primer_apellido', models.CharField(max_length=50)),
                 ('segundo_apellido', models.CharField(max_length=50, null=True)),
                 ('telefono', models.CharField(max_length=12)),
-                ('tipo_trabajador', models.IntegerField(choices=[(1, 'Administrador'), (2, 'Staff')])),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('tipo_trabajador', models.IntegerField(
+                    choices=[(1, 'Administrador'), (2, 'Staff')])),
+                ('usuario', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'abstract': False,
@@ -37,28 +40,34 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Direccion',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('calle', models.CharField(max_length=120)),
                 ('numero', models.CharField(max_length=5)),
                 ('departamento', models.CharField(max_length=5, null=True)),
                 ('codigo_postal', models.CharField(max_length=20)),
                 ('nombre', models.CharField(max_length=15)),
                 ('descripcion', models.CharField(max_length=100)),
-                ('comuna', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='gestion.comuna')),
+                ('comuna', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT, to='gestion.comuna')),
             ],
         ),
         migrations.CreateModel(
             name='Cliente',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('rut', models.CharField(max_length=10, unique=True)),
                 ('nombre', models.CharField(max_length=50)),
                 ('primer_apellido', models.CharField(max_length=50)),
                 ('segundo_apellido', models.CharField(max_length=50, null=True)),
                 ('telefono', models.CharField(max_length=12)),
-                ('direccion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cliente', to='usuarios.direccion')),
-                ('forma_pago', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='gestion.formapago')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('direccion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='cliente', to='usuarios.direccion')),
+                ('forma_pago', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.SET_NULL, to='gestion.formapago')),
+                ('usuario', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'abstract': False,

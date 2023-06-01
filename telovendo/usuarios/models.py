@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -42,6 +43,7 @@ class Usuario(AbstractUser):
 
     objects = UserManager()
 
+
 class Persona(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     rut = models.CharField(max_length=10, unique=True)
@@ -53,13 +55,21 @@ class Persona(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self) -> str:
+        return f'{self.nombre} {self.primer_apellido}'
+
+
 class Trabajador(Persona):
     TRABAJADOR_CHOICES = [(1, "Administrador"), (2, "Staff")]
     tipo_trabajador = models.IntegerField(choices=TRABAJADOR_CHOICES)
 
+
 class Cliente(Persona):
-    forma_pago = models.ForeignKey("gestion.FormaPago", on_delete=models.SET_NULL, null=True)
-    direccion = models.ForeignKey("Direccion", on_delete=models.CASCADE, related_name="cliente", null=True)
+    forma_pago = models.ForeignKey(
+        "gestion.FormaPago", on_delete=models.SET_NULL, null=True)
+    direccion = models.ForeignKey(
+        "Direccion", on_delete=models.CASCADE, related_name="cliente", null=True)
+
 
 class Direccion(models.Model):
     calle = models.CharField(max_length=120)
@@ -67,5 +77,6 @@ class Direccion(models.Model):
     departamento = models.CharField(max_length=5, null=True)
     codigo_postal = models.CharField(max_length=20)
     comuna = models.ForeignKey("gestion.Comuna", on_delete=models.PROTECT)
-    nombre = models.CharField(max_length=15) # Ej: Casa
-    descripcion = models.CharField(max_length=100) #Ej: población x, paradero número x, condominio x
+    nombre = models.CharField(max_length=15)  # Ej: Casa
+    # Ej: población x, paradero número x, condominio x
+    descripcion = models.CharField(max_length=100)

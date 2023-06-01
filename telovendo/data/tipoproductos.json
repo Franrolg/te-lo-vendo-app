@@ -1,0 +1,42 @@
+[
+  {
+    "model": "gestion.tipoproducto",
+    "pk": 1,
+    "fields": {
+      "nombre": "Tecnología",
+      "descripcion": "Productos tecnológicos"
+    }
+  },
+  {
+    "model": "gestion.tipoproducto",
+    "pk": 2,
+    "fields": {
+      "nombre": "Fotografía",
+      "descripcion": "Productos relacionados con fotografía"
+    }
+  },
+  {
+    "model": "gestion.tipoproducto",
+    "pk": 3,
+    "fields": {
+      "nombre": "Electrodomésticos",
+      "descripcion": "Productos para el hogar"
+    }
+  },
+  {
+    "model": "gestion.tipoproducto",
+    "pk": 4,
+    "fields": {
+      "nombre": "Hogar",
+      "descripcion": "Productos para el hogar"
+    }
+  },
+  {
+    "model": "gestion.tipoproducto",
+    "pk": 5,
+    "fields": {
+      "nombre": "Deportes",
+      "descripcion": "Productos relacionados con deportes"
+    }
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "model": "gestion.estadopedido",
+    "pk": 1,
+    "fields": {
+      "nombre": "Pendiente",
+      "descripcion": "Estado inicial de un pedido, cuando aún no ha sido confirmado por la tienda"
+    }
+  },
+  {
+    "model": "gestion.estadopedido",
+    "pk": 2,
+    "fields": {
+      "nombre": "En preparación",
+      "descripcion": "Estado de un pedido cuando ya ha sido confirmado por la tienda y se prepara para despacharlo"
+    }
+  },
+  {
+    "model": "gestion.estadopedido",
+    "pk": 3,
+    "fields": {
+      "nombre": "En despacho",
+      "descripcion": "Estado del pedido cuando se encuentra en proceso de env�o de la tienda hacia el hogar del cliente"
+    }
+  },
+  {
+    "model": "gestion.estadopedido",
+    "pk": 4,
+    "fields": {
+      "nombre": "Entregado",
+      "descripcion": "Estado final de un pedido, cuando este ya ha sido entregado a su destino"
+    }
+  },
+  {
+    "model": "gestion.estadopedido",
+    "pk": 5,
+    "fields": {
+      "nombre": "Cancelado",
+      "descripcion": "Estado del pedido cuando este es cancelado por el usuario o la empresa"
+    }
+  }
+]

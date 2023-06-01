@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="col-md-10 offset-md-1">
+    <h1 class='text-center mt-2 mb-5'>PEDIDOS REGISTRADOS</h1>
+    
+    <div class="container justify-content-center">
+    <table class="table col-12">
+        <thead>
+          <tr>
+            <th class="col-1" scope="col">Pedido</th>
+            <th class="col-2" scope="col">Cliente</th>
+            <th class="col-1" scope="col">Medio</th>
+            <th class="col-2" scope="col">Pago</th>
+            <th class="col-1" scope="col">Precio Total</th>
+            <th class="col-2" scope="col">Estado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for u in pedidos|dictsort:"id" %}
+            <tr>
+                <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#P{{u.id}}Modal"> {{u.id}} </button> </td>
+                <td>{{u.cliente}} </td>
+                <td>{{u.medio}} </td>
+                <td>{{u.forma_pago}} </td>
+                <td>{{u.precio_total}} </td>
+                <td>{{u.estado}} </td>
+                {% if u.estado.id < 4 %}
+                <td>
+                    <form action="" method="POST">{% csrf_token %}
+                    <input type="hidden" name="id_estado" value="{{ u.id }}">
+                    <button type="submitt" class="btn btn-outline-secondary btn-pagar">Avanzar Estado</button>
+                    </form>
+                </td>
+                {% endif %}
+                {% if u.estado.id == 1 %}
+                <td>
+                    <form action="" method="POST">{% csrf_token %}
+                    <input type="hidden" name="id_cancelar" value="{{ u.id }}">
+                    <button type="submitt" class="btn btn-outline-secondary btn-pagar">Cancelar Pedido</button>
+                    </form>
+                </td>
+                {% endif %}
+
+            </tr>
+
+            <!-- Modal -->
+            <div class="modal fade" id="P{{u.id}}Modal" tabindex="-1" aria-labelledby="P{{u.id}}ModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                  </div>
+                  <div class="modal-body">
+                    {% for detalle in  u.detallepedido_set.all %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img src="{% static detalle.producto.url_imagen %}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title">{{detalle.producto.nombre}}</h5>
+                            <p class="card-text">{{detalle.producto.descripcion}}</p>
+                            <p class="card-text"><small class="text-muted">Cantidad: {{detalle.cantidad}}</small></p>
+                            <p class="card-text"><small class="text-muted">Precio Unitario: {{detalle.mostrar_precio}}</small></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock contenido %}
+
+

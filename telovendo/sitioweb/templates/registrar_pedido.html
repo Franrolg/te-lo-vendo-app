@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="col-md-6 offset-md-3">
+    <h1 class='text-center mt-2 mb-5'> TOMAR PEDIDO </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+            {% for campo in form %}
+                {% if campo.errors %}
+                    {{ campo.errors }}
+                {% endif %}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {{ form.as_p }}
+
+        <table class="table col-12">
+            <thead>
+              <tr>
+                <th class="col-1" scope="col">SKU</th>
+                <th class="col-2" scope="col">Nombre</th>
+                <th class="col-2" scope="col">Stock</th>
+                <th class="col-3" scope="col">Precio</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+                {% for u in productos|dictsort:"sku" %}
+                <tr>
+                    <td>{{u.sku}}</a> </td>
+                    <td>{{u.nombre}} </td>
+                    <td>{{u.stock}}</td>
+                    <td>{{u.mostrar_precio}}</td>
+                    <td><input type="number" class="form-control" min="0" max="{{u.stock}}" name="{{u.sku}}" id="id_{{u.sku}}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+
+        <div class="d-grid col-md-6 mx-auto">
+            <button type="submit" class="btn btn-secondary mt-4">Confirmar Pedido</button>
+        </div>
+    </form>
+</div>
+{% endblock contenido %}

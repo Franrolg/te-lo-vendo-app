@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block contenido %}
-<div class="col-md-6 offset-md-3 mt-2">
+<div class="col-lg-10 offset-lg-1 mt-2">
     {% if messages %}
     {% for mensaje in messages %}
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -11,14 +12,85 @@
     {% endfor %}
   {% endif %}
     {% if user.is_authenticated %}
-            <h1 class='text-center mt-2 mb-5'> BIENVENIDO 
-              {% if user.cliente_set.all %}
-              {{ user.cliente_set.first.nombre|upper }}
-              {% else %}
-              {{ user.trabajador_set.first.nombre|upper }}
-              {% endif %}
-             </h1>
-    {% else %}
+    <h1 class='text-center mt-2 mb-5'> BIENVENIDO 
+      {% if user.cliente_set.all %}
+      {{ user.cliente_set.first.nombre|upper }}
+      {% else %}
+      {{ user.trabajador_set.first.nombre|upper }}
+      {% endif %}
+     </h1>
+    {% endif %}
+    {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
+             <div class="col-12">
+              <details>
+                  <summary>Detalle de compra | Cantidad Productos: <span id="resultado">0</span></summary>
+                  <div class="card mb-3">
+                    <form action="{% url 'sitioweb:registrar pedido usuario' %}" method="GET">
+                      {% csrf_token %}
+                      <div class="row g-0" id="carrito-compras">
+  
+                      </div>
+                      <div class="row pagar">
+                        <div class="col-5"></div>
+                        <div class="col-4 pt-2"><span id="total-compra"></span></div>
+                        <div class="col-3"><button type="submitt" class="btn btn-outline-secondary btn-pagar">Realizar pedido</button></div>
+                      </div>
+                    </form>
+                  </div>
+              </details>
+            </div>
+             <div class="row col-12">
+              {% for producto in productos|dictsort:"sku" %}
+              
+                <div class="col-4 producto m-0">
+                  {% with producto.url_imagen as image_static  %}
+                  <a data-bs-toggle="modal" data-bs-target="#{{producto.sku}}Modal">
+                  <img src="{% static image_static %}" alt="">
+                  </a>
+                  {% endwith %}
+                  <div class="row">
+                      <span class="col-5 nombre">{{producto.nombre}}</span>
+                      {% with producto.sku as sku  %}
+                      <span class="col-2 precio" id="precio-{{sku}}"> {{producto.mostrar_precio}}</span>
+                      {% endwith %}
+                      <span class="col-2">{{producto.stock}}</span>
+                      <span class="col-2"><input type="number" onKeyDown="return false" id="{{producto.sku}}" value=0 min="0" max="{{producto.stock}}" oninput="sumar()"></span>
+                  </div>
+                </div>
+
+                <!-- Modal -->
+            <div class="modal fade" id="{{producto.sku}}Modal" tabindex="-1" aria-labelledby="{{producto.sku}}ModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                  </div>
+                  <div class="modal-body">
+                    <div class="card mb-3" style="max-width: 540px;">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img src="{% static producto.url_imagen %}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title">{{producto.nombre}}</h5>
+                            <p class="card-text">{{producto.descripcion}}</p>
+                            <p class="card-text"><small class="text-muted">Stock: {{producto.stock}}</small></p>
+                            <p class="card-text"><small class="text-muted">Precio Unitario: {{producto.mostrar_precio}}</small></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+    {% endif %}
+    {% if not user.is_authenticated %}
         <h1 class='text-center mt-2 mb-5'> INICIAR SESIÓN </h1>
         <br>
         <form action="{% url 'index' %}" method="POST">

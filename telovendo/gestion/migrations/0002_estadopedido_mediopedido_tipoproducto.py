@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EstadoPedido',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=20)),
                 ('descripcion', models.CharField(max_length=200)),
             ],
@@ -21,7 +22,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MedioPedido',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=20)),
                 ('descripcion', models.CharField(max_length=200)),
             ],
@@ -29,7 +31,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TipoProducto',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=20)),
                 ('descripcion', models.CharField(max_length=200)),
             ],
