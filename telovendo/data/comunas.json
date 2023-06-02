@@ -2587,7 +2587,7 @@
     "model": "gestion.comuna",
     "pk": 307,
     "fields": {
-      "nombre": "Aisén",
+      "nombre": "Aysén",
       "region": 15
     }
   },

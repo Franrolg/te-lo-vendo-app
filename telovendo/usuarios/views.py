@@ -60,10 +60,9 @@ def registrar_cliente(request):
             tipo_trabajador = datos.get("tipo_trabajador", False)
             datos_user = {"email": email,
                           "password": make_password(contrasena)}
-
-            if tipo_trabajador:
-                datos_user['is_superuser'] = True if tipo_trabajador == 1 else False
-                datos_user['is_staff'] = True if tipo_trabajador == 2 else False
+            if tipo_trabajador is not False:
+                datos_user['is_superuser'] = True if int(tipo_trabajador) == 1 else False
+                datos_user['is_staff'] = True if int(tipo_trabajador) == 2 else False
 
             usuario = Usuario.objects.create(**datos_user)
 

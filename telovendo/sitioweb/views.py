@@ -60,13 +60,21 @@ class PedidosView(ListView):
         if request.POST.get('id_cancelar', False):
             pedido = Pedido.objects.get(id=request.POST['id_cancelar'])
             pedido.estado = EstadoPedido.objects.get(id=5)
+            detalles_productos = pedido.detallepedido_set.all()
+            for detalle in detalles_productos:
+                producto = detalle.producto
+                producto.stock += detalle.cantidad
+                producto.save()
+
             pedido.save()
 
         if request.POST.get("id_estado", False):
             pedido = Pedido.objects.get(id=request.POST['id_estado'])
-            print(pedido)
             pedido.estado = EstadoPedido.objects.get(id=pedido.estado_id+1)
             pedido.save()
+        
+        send_mail(f"Cambio estado pedido #{pedido.id}",
+                      f"Estimado {pedido.cliente.nombre}:\n\n\n El estado de su pedido {pedido.id} ha camiado a '{pedido.estado}'.", "telovendopython@gmail.com", [pedido.cliente.usuario.email])
 
         return redirect('sitioweb:pedidos')
 
@@ -84,8 +92,16 @@ class MisPedidosView(ListView):
 
     def post(self, request, *args, **kwargs):
         pedido = Pedido.objects.get(id=request.POST['id'])
+        detalles_productos = pedido.detallepedido_set.all()
+        for detalle in detalles_productos:
+            producto = detalle.producto
+            producto.stock += detalle.cantidad
+            producto.save()
         pedido.estado = EstadoPedido.objects.get(id=5)
         pedido.save()
+
+        send_mail(f"Cambio estado pedido #{pedido.id}",
+                      f"Estimado {pedido.cliente.nombre}:\n\n\n El estado de su pedido {pedido.id} ha camiado a '{pedido.estado}'.", "telovendopython@gmail.com", [pedido.cliente.usuario.email])
         return redirect('sitioweb:mis pedidos')
 
 
@@ -110,7 +126,7 @@ def registrar_pedido(request):
                 **{"email": email, "password": make_password(contrasena)})
 
             direccion = Direccion.objects.create(**{"calle": datos.pop("calle"), "numero": datos.pop("numero"), "departamento": datos.pop(
-                "departamento", None), "codigo_postal": datos.pop("codigo_postal"), "comuna": Comuna.objects.get(id=datos.pop("comuna")), "nombre": datos.pop("nombre_direccion"), "descripcion": datos.pop("descripcion")})
+                "departamento", None), "codigo_postal": datos.pop("codigo_postal"), "comuna": Comuna.objects.get(id=datos.pop("comuna").id), "nombre": datos.pop("nombre_direccion"), "descripcion": datos.pop("descripcion")})
 
             cliente = Cliente.objects.create(**{"usuario": usuario, "rut": datos.pop('rut'), "nombre":  datos.pop('nombre'), "primer_apellido": datos.pop('primer_apellido'),
                                              "segundo_apellido": datos.pop('segundo_apellido'), "telefono": datos.pop('telefono'), "direccion": direccion})
@@ -121,6 +137,8 @@ def registrar_pedido(request):
             for key in request.POST:
                 if Producto.objects.filter(sku=key).exists() and request.POST[key] and int(request.POST[key]) > 0:
                     producto = Producto.objects.get(sku=key)
+                    producto.stock -= int(request.POST[key])
+                    producto.save()
                     DetallePedido.objects.create(
                         **{"producto_id": producto.sku, "pedido_id": pedido.id, "cantidad": int(request.POST[key]), "precio": producto.precio})
 
@@ -157,6 +175,8 @@ def registrar_pedido_usuario(request):
             for key in request.POST:
                 if Producto.objects.filter(sku=key).exists() and request.POST[key] and int(request.POST[key]) > 0:
                     producto = Producto.objects.get(sku=key)
+                    producto.stock -= int(request.POST[key])
+                    producto.save()
                     DetallePedido.objects.create(
                         **{"producto_id": producto.sku, "pedido_id": pedido.id, "cantidad": int(request.POST[key]), "precio": producto.precio})
 
@@ -179,7 +199,7 @@ def actualizar_pedido(request, pk):
             pedido.estado = formulario.cleaned_data['estado']
             pedido.save()
 
-            send_mail(f"Cambio estado pedido {pedido.id}",
+            send_mail(f"Cambio estado pedido #{pedido.id}",
                       f"Estimado {pedido.cliente.nombre}:\n\n\n Su pedido ahora se encuentra {pedido.estado}.", "telovendopython@gmail.com", [pedido.cliente.usuario.email])
 
             return redirect('sitioweb:pedidos')

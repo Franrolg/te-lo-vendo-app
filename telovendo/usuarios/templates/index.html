@@ -22,7 +22,7 @@
     {% endif %}
     {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
              <div class="col-12">
-              <details>
+              <details id="carrito">
                   <summary>Detalle de compra | Cantidad Productos: <span id="resultado">0</span></summary>
                   <div class="card mb-3">
                     <form action="{% url 'sitioweb:registrar pedido usuario' %}" method="GET">
@@ -49,12 +49,12 @@
                   </a>
                   {% endwith %}
                   <div class="row">
-                      <span class="col-5 nombre">{{producto.nombre}}</span>
+                      <span class="col-4 nombre">{{producto.nombre}}</span>
                       {% with producto.sku as sku  %}
-                      <span class="col-2 precio" id="precio-{{sku}}"> {{producto.mostrar_precio}}</span>
+                      <span class="col-3 precio" id="precio-{{sku}}"> {{producto.mostrar_precio}}</span>
                       {% endwith %}
                       <span class="col-2">{{producto.stock}}</span>
-                      <span class="col-2"><input type="number" onKeyDown="return false" id="{{producto.sku}}" value=0 min="0" max="{{producto.stock}}" oninput="sumar()"></span>
+                      <span class="col-3"><input type="number" onKeyDown="return false" id="{{producto.sku}}" value=0 min="0" max="{{producto.stock}}" oninput="sumar()"></span>
                   </div>
                 </div>
 
